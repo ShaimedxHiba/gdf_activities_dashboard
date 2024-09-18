@@ -17,8 +17,8 @@ def load_data():
 # Filtered map display function
 def display_map(filtered_november_df, filtered_march_df):
     # Filter out rows with NaN values in location columns (latitude, longitude)
-    filtered_november_df = filtered_november_df.dropna(subset=['latitude', 'longitude'])
-    filtered_march_df = filtered_march_df.dropna(subset=['latitude', 'longitude'])
+    filtered_november_df = filtered_november_df.dropna(subset=['Latitude', 'Longitude'])
+    filtered_march_df = filtered_march_df.dropna(subset=['Latitude', 'Longitude'])
 
     # Create a Folium map centered around the median of the filtered November data
     if not filtered_november_df.empty:
