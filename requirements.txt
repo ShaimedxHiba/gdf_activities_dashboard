@@ -6,3 +6,4 @@ openpyxl
 streamlit-leaflet
 seaborn
 streamlit_folium
+folium
