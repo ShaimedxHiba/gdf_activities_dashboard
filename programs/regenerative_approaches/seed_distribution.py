@@ -160,6 +160,23 @@ def seed_distribution():
     # Display summary statistics as a table
     st.dataframe(summary_df, use_container_width=True, hide_index=True)
 
+    # Calculate the total number of farmers for both November and March
+    total_farmers = march_totals['Total Farmers']
+
+    # Define the goal
+    goal_farmers = 5000
+
+    # Display progress bar
+    progress = min(total_farmers / goal_farmers, 1.0)  # Cap at 1.0 if goal is exceeded
+    st.progress(progress)
+
+    # Display a metric to show that the goal has been exceeded
+    if total_farmers > goal_farmers:
+        st.metric(label="Total Farmers Benefited", value=f"{total_farmers}", delta=f"+{total_farmers - goal_farmers} farmers over goal!")
+    else:
+        st.metric(label="Total Farmers Benefited", value=f"{total_farmers}", delta=f"{goal_farmers - total_farmers} farmers to reach goal")
+
+
     # Display seed distribution stats by seed type
     st.markdown('<div class="summary-title">Seed Distribution by Commune</div>', unsafe_allow_html=True)
 
