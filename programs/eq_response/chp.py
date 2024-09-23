@@ -155,11 +155,11 @@ def chp():
 
     # Apply filters to watermills data
     filtered_watermills = watermills[
-        (watermills['Douar'].str.contains(douar_filter, case=False, na=False)) &
-        (watermills['Commune'].str.contains(commune_filter, case=False, na=False)) &
-        (watermills['Ownership Status'].str.contains(ownership_filter, case=False, na=False)) &
-        (watermills['Douars Benefiting'].str.contains(benefiting_filter, case=False, na=False)) &
-        (watermills['Structural Integrity'].str.contains(structural_filter, case=False, na=False))
+        (watermills['Douar'].str.contains(douar_filter, case=False, na=False)if douar_filter else True) &
+        (watermills['Commune'].str.contains(commune_filter, case=False, na=False)if commune_filter else True) &
+        (watermills['Ownership Status'].str.contains(ownership_filter, case=False, na=False)if ownership_filter else True) &
+        (watermills['Douars Benefiting'].str.contains(benefiting_filter, case=False, na=False)if benefiting_filter else True) &
+        (watermills['Structural Integrity'].str.contains(structural_filter, case=False, na=False)if structural_filter else True)
     ]
     
     # Display the filtered data
