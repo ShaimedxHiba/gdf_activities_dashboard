@@ -67,7 +67,7 @@ def chp():
     watermills, irrigation, springs, terraces, shelters, granaries = load_data()
 #Introduction
     st.markdown('<div class="title">Cultural Heritage Sites</div>', unsafe_allow_html=True)
-    st.markdown('<div class="intro-text">Intro to cultural heritage sites importance in the High Atlas</div>', unsafe_allow_html=True)
+   # st.markdown('<div class="intro-text">Intro to cultural heritage sites importance in the High Atlas</div>', unsafe_allow_html=True)
 
 #Watermills
     # Section for watermills
