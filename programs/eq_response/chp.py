@@ -495,7 +495,7 @@ def chp():
         st.write("No valid coordinates available for the selected filters.")
 #Granaries
     # Section for granaries
-    st.markdown('<div class="section-title"Granaries</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Granaries</div>', unsafe_allow_html=True)
     st.markdown('<div class="text">Importance of granaries</div>', unsafe_allow_html=True)
     
     # Reorder columns to place 'Douar' after 'Type' and remove 'Pictures'
