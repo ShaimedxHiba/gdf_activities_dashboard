@@ -504,5 +504,4 @@ def chp():
         st.write("No valid coordinates available for the selected filters.")
     
 
-    st.markdown('<div class="section-title">Pilot Project</div>', unsafe_allow_html=True)
-    st.markdown('<div class="text">Progress report on the pilot project / Sites already repared ...</div>', unsafe_allow_html=True)
+    
