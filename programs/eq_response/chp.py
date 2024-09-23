@@ -60,6 +60,26 @@ def chp():
         .block-container {
             padding: 2rem 1rem;
         }
+        /* Custom style for stats */
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .stat {
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+            margin: 10px;
+            flex: 1 1 200px;
+            max-width: 200px;
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #FF6347;
+        }
         </style>
         """, unsafe_allow_html=True
     )
@@ -67,8 +87,46 @@ def chp():
     watermills, irrigation, springs, terraces, shelters, granaries = load_data()
 #Introduction
     st.markdown('<div class="title">Cultural Heritage Sites</div>', unsafe_allow_html=True)
-    st.markdown('<div class="intro-text">Intro to cultural heritage sites importance in the High Atlas</div>', unsafe_allow_html=True)
+   # st.markdown('<div class="intro-text">Intro to cultural heritage sites importance in the High Atlas</div>', unsafe_allow_html=True)
+    # Display the number of sites for each category
+    total_watermills = watermills.shape[0]
+    total_irrigation = irrigation.shape[0]
+    total_springs = springs.shape[0]
+    total_terraces = terraces.shape[0]
+    total_shelters = shelters.shape[0]
+    total_granaries = granaries.shape[0]
 
+    # Create a container for the stats
+    stats_html = f'''
+    <div class="stats-container">
+        <div class="stat">
+            <div class="stat-number">{total_watermills}</div>
+            Watermills
+        </div>
+        <div class="stat">
+            <div class="stat-number">{total_irrigation}</div>
+            Irrigation Systems
+        </div>
+        <div class="stat">
+            <div class="stat-number">{total_springs}</div>
+            Springs
+        </div>
+        <div class="stat">
+            <div class="stat-number">{total_terraces}</div>
+            Terraces
+        </div>
+        <div class="stat">
+            <div class="stat-number">{total_shelters}</div>
+            Nomadic Shelters
+        </div>
+        <div class="stat">
+            <div class="stat-number">{total_granaries}</div>
+            Granaries
+        </div>
+    </div>
+    '''
+
+    st.markdown(stats_html, unsafe_allow_html=True)
 #Watermills
     # Section for watermills
     st.markdown('<div class="section-title">Watermills</div>', unsafe_allow_html=True)
