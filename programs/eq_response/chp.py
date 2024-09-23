@@ -153,15 +153,21 @@ def chp():
     with col2:    
         structural_filter = st.text_input("Search by Structural Integrity", key='watermill_structural')
 
-    # Apply filters to watermills data
-    filtered_watermills = watermills[
-        (watermills['Douar'].str.contains(douar_filter, case=False, na=False)if douar_filter else True) &
-        (watermills['Commune'].str.contains(commune_filter, case=False, na=False)if commune_filter else True) &
-        (watermills['Ownership Status'].str.contains(ownership_filter, case=False, na=False)if ownership_filter else True) &
-        (watermills['Douars Benefiting'].str.contains(benefiting_filter, case=False, na=False)if benefiting_filter else True) &
-        (watermills['Structural Integrity'].str.contains(structural_filter, case=False, na=False)if structural_filter else True)
-    ]
     
+    # Apply filters to watermills data
+    filtered_watermills = watermills.copy()
+
+    if douar_filter:
+         filtered_watermills = filtered_watermills[filtered_watermills['Douar'].str.contains(douar_filter, case=False, na=False)]
+    if commune_filter:
+        filtered_watermills = filtered_watermills[filtered_watermills['Commune'].str.contains(commune_filter, case=False, na=False)]
+    if ownership_filter:
+        filtered_watermills = filtered_watermills[filtered_watermills['Ownership Status'].str.contains(ownership_filter, case=False, na=False)]
+    if benefiting_filter:
+        filtered_watermills = filtered_watermills[filtered_watermills['Douars Benefiting'].str.contains(benefiting_filter, case=False, na=False)]
+    if structural_filter:
+        filtered_watermills = filtered_watermills[filtered_watermills['Structural Integrity'].str.contains(structural_filter, case=False, na=False)]
+
     # Display the filtered data
     st.dataframe(filtered_watermills, hide_index=True)
 
