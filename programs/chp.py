@@ -590,7 +590,3 @@ def chp():
                 folium_static(m)
         else:
                 st.write("No valid coordinates available for the selected filters.")
-
-if __name__ == "__main__":
-    chp()
-
