@@ -348,32 +348,33 @@ def chp():
 
         # Display map only for rows with valid coordinates
         valid_coords = filtered_springs.dropna(subset=['Latitude', 'Longitude'])
-        
-        if not valid_coords.empty:
-                # Create the map centered at the average location of the irrigation systems
-                m = folium.Map(location=[valid_coords['Latitude'].mean(), valid_coords['Longitude'].mean()], zoom_start=8)
 
-                # Add markers to the map for each irrigation system
-                for _, row in valid_coords.iterrows():
-                    popup_content = (
-                        f"<b>Douar:</b> {row['Douar']}<br>"
-                        f"<b>Commune:</b> {row['Commune']}<br>"
-                        
+        if not valid_coords.empty:
+            # Create the map centered at the average location of the springs
+            m = folium.Map(location=[valid_coords['Latitude'].mean(), valid_coords['Longitude'].mean()], zoom_start=8)
+
+            # Add markers to the map for each spring
+            for _, row in valid_coords.iterrows():
+                # Construct the popup content
+                popup_content = (
+                    f"<b>Douar:</b> {row['Douar']}<br>"
+                    f"<b>Commune:</b> {row['Commune']}<br>"
                 )
 
                 # Only add 'Structural Integrity' if it's not NaN
                 if pd.notna(row['Structural Integrity']):
-                        popup_content += f"<b>Structural Integrity:</b> {row['Structural Integrity']}<br>"
+                    popup_content += f"<b>Structural Integrity:</b> {row['Structural Integrity']}<br>"
 
+                # Add a marker for each valid coordinate
                 folium.Marker(
-                        location=[row['Latitude'], row['Longitude']],
-                        popup=folium.Popup(popup_content, max_width=300),
+                    location=[row['Latitude'], row['Longitude']],
+                    popup=folium.Popup(popup_content, max_width=300),
                 ).add_to(m)
 
-                # Display the map
-                folium_static(m)
+            # Display the map
+            folium_static(m)
         else:
-                st.write("No valid coordinates available for the selected filters.")
+            st.write("No valid coordinates available for the selected filters.")
 
     if "Terraces" in selected_sites:
         st.markdown('<div class="section-title">Terraces</div>', unsafe_allow_html=True)
