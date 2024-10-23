@@ -6,7 +6,7 @@ from streamlit_folium import folium_static
 
 
 # Load the Excel data
-@st.cache_data
+#@st.cache_data
 def load_data():
     # Load both sheets from the Excel file
     november_df = pd.read_excel('data/seed_distribution_consolidated.xlsx', sheet_name='November 2023')
