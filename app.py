@@ -16,7 +16,7 @@ from programs.eq_response.er import er
 from programs.eq_response.chp import chp
 
 # Sidebar for navigation
-st.sidebar.title("GDF/MBLA Activities Dashboard")
+st.sidebar.title("GDF Activities Dashboard")
 
 # Main program selectbox to ensure only one program runs at a time
 program_type = st.sidebar.selectbox("Select Program Type", [
