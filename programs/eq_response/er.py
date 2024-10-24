@@ -200,9 +200,11 @@ def er():
                         f"<b>Commune:</b> {project['Commune']}<br>"
                         f"<b>Province:</b> {project['Province']}<br>"
                         f"<b>Description:</b> {project['Description']}<br>"
-                        f"<b>Date:</b> {project['Date']}<br>"
+                        
                         
                     )
+                    if pd.notna(project['Date']):
+                        popup_content += f"<b>Date:</b> {project['Date']}<br>"
                     # Only add the 'Partners' section if it's not None
                     if pd.notna(project['Partners']):
                         popup_content += f"<b>Partners:</b> {project['Partners']}<br>"
