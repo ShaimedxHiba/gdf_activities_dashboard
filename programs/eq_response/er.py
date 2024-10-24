@@ -14,47 +14,7 @@ def load_data():
     medical = pd.read_excel('data/gdf_eq_response.xlsx', sheet_name='Medical caravans') 
     return distributions,schools,wash,medical
 
-def display_map(filtered_november_df, filtered_march_df):
-    # Filter out rows with NaN values in location columns (latitude, longitude)
-    filtered_november_df = filtered_november_df.dropna(subset=['Latitude', 'Longitude'])
-    filtered_march_df = filtered_march_df.dropna(subset=['Latitude', 'Longitude'])
 
-    # Create a Folium map centered around the median of the filtered November data
-    if not filtered_november_df.empty:
-        lat_center = filtered_november_df['Latitude'].median()
-        lon_center = filtered_november_df['Longitude'].median()
-    else:
-        lat_center = filtered_march_df['Latitude'].median()
-        lon_center = filtered_march_df['Longitude'].median()
-    
-    m = folium.Map(location=[lat_center, lon_center], zoom_start=10)
-
-    # Helper function to create popups, excluding NaN values
-    def generate_popup(row):
-        popup_content = ""
-        for col, value in row.items():
-            if pd.notna(value):  # Only include non-NaN values
-                popup_content += f"<b>{col}:</b> {value} <br>"
-        return popup_content
-
-    # Add markers for November data
-    for _, row in filtered_november_df.iterrows():
-        folium.Marker(
-            location=[row['Latitude'], row['Longitude']],
-            popup=folium.Popup(generate_popup(row), max_width=300),
-            icon=folium.Icon(color="blue", icon="info-sign")
-        ).add_to(m)
-
-    # Add markers for March data
-    for _, row in filtered_march_df.iterrows():
-        folium.Marker(
-            location=[row['Latitude'], row['Longitude']],
-            popup=folium.Popup(generate_popup(row), max_width=300),
-            icon=folium.Icon(color="green", icon="info-sign")
-        ).add_to(m)
-
-    # Display the map in the Streamlit app
-    folium_static(m)
 
 def er():
     st.markdown(
