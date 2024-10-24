@@ -16,7 +16,7 @@ from programs.eq_response.er import er
 from programs.eq_response.chp import chp
 
 # Sidebar for navigation
-st.sidebar.title("GDF Activities Dashboard")
+st.sidebar.title("GDF/MBLA Activities Dashboard")
 
 # Main program selectbox to ensure only one program runs at a time
 program_type = st.sidebar.selectbox("Select Program Type", [
@@ -34,13 +34,15 @@ if program_type == "Regenerative Approaches":
             "Plant distribution",
             "Seed exchange",
             "Agroecosystem parcels enhancement",
-            "Transhumant pastoralists"
+            "Transhumant pastoralists",
+            "Livestock & Shelters"
         ])
 
     # Display corresponding content based on the selected sub-program
     if sub_program == "Plant nurseries":
         nurseries()
-
+    if sub_program ==  "Livestock & Shelters":
+        animal_shelters
     elif sub_program == "Plant distribution":
         plant_distribution()
 
@@ -88,13 +90,15 @@ elif program_type == "EQ Response":
         sub_program_eq = st.selectbox("Select Sub-Program", [
             "Emergency response",
             "Seed distribution",
+            "Livestock & Shelters",
             "Cultural heritage restoration"
         ])
 
     # Display corresponding content based on the selected sub-program
     if sub_program_eq == "Emergency response":
         er()
-
+    if sub_program_eq ==  "Livestock & Shelters":
+        animal_shelters()
     elif sub_program_eq == "Seed distribution":
         seed_distribution()
 
